@@ -1,10 +1,12 @@
 package com.example.homework3
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 
 
@@ -35,6 +37,7 @@ class MainActivity : AppCompatActivity() {
         override fun afterTextChanged(s: Editable) {}
     }
 
+    //@SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -46,7 +49,7 @@ class MainActivity : AppCompatActivity() {
         etPhone = findViewById(R.id.editTextPhone)
         etAge = findViewById(R.id.editTextAge)
         bBTN1 = findViewById(R.id.button)
-
+        var textView: TextView = findViewById(R.id.textView)
 
         // поставил TextChangeListener для всех полей
 
@@ -54,6 +57,11 @@ class MainActivity : AppCompatActivity() {
         this.etSurname?.addTextChangedListener(textWatcher)
         this.etPhone?.addTextChangedListener(textWatcher)
         this.etAge?.addTextChangedListener(textWatcher)
+
+        bBTN1?.setOnClickListener {
+            textView.text = "Name: ${etName?.text}| Surname: ${etSurname?.text}| Phone: ${etPhone?.text}| Age: ${etAge?.text}"
+        }
+
     }
 }
 
