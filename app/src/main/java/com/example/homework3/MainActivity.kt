@@ -17,7 +17,6 @@ class MainActivity : AppCompatActivity() {
     var etPhone: EditText? = null
     var etAge: EditText? = null
 
-    // one login button
     var bBTN1: Button? = null
 
     // implement-ирую TextWatcher
@@ -37,19 +36,19 @@ class MainActivity : AppCompatActivity() {
         override fun afterTextChanged(s: Editable) {}
     }
 
-    //@SuppressLint("SetTextI18n")
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         // связываю переменные с полями ввода и кнопкой
-
+//
         etName = findViewById(R.id.editTextTextPersonName)
         etSurname = findViewById(R.id.editTextTextPersonSurname)
         etPhone = findViewById(R.id.editTextPhone)
         etAge = findViewById(R.id.editTextAge)
         bBTN1 = findViewById(R.id.button)
-        var textView: TextView = findViewById(R.id.textView)
+        val textView: TextView = findViewById(R.id.textView)
 
         // поставил TextChangeListener для всех полей
 
