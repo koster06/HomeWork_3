@@ -50,7 +50,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         // связываю переменные с полями ввода и кнопкой
-//
+
         etName = findViewById(R.id.editTextTextPersonName)
         etSurname = findViewById(R.id.editTextTextPersonSurname)
         etPhone = findViewById(R.id.editTextPhone)
