@@ -1,9 +1,12 @@
 package com.example.homework3
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -36,6 +39,11 @@ class MainActivity : AppCompatActivity() {
         override fun afterTextChanged(s: Editable) {}
     }
 
+    fun View.hideKeyboard() {
+        val inputManager = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputManager.hideSoftInputFromWindow(windowToken, 0)
+    }
+
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,6 +67,7 @@ class MainActivity : AppCompatActivity() {
 
         bBTN1?.setOnClickListener {
             textView.text = "Name: ${etName?.text}| Surname: ${etSurname?.text}| Phone: ${etPhone?.text}| Age: ${etAge?.text}"
+            it.hideKeyboard()
         }
 
     }
