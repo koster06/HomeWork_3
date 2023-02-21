@@ -1,10 +1,15 @@
 package com.example.homework3
 
+import android.annotation.SuppressLint
+import android.content.Context
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 
 
@@ -15,7 +20,6 @@ class MainActivity : AppCompatActivity() {
     var etPhone: EditText? = null
     var etAge: EditText? = null
 
-    // one login button
     var bBTN1: Button? = null
 
     // implement-ирую TextWatcher
@@ -35,6 +39,12 @@ class MainActivity : AppCompatActivity() {
         override fun afterTextChanged(s: Editable) {}
     }
 
+    fun View.hideKeyboard() {
+        val inputManager = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputManager.hideSoftInputFromWindow(windowToken, 0)
+    }
+
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -46,7 +56,7 @@ class MainActivity : AppCompatActivity() {
         etPhone = findViewById(R.id.editTextPhone)
         etAge = findViewById(R.id.editTextAge)
         bBTN1 = findViewById(R.id.button)
-
+        val textView: TextView = findViewById(R.id.textView)
 
         // поставил TextChangeListener для всех полей
 
@@ -54,6 +64,12 @@ class MainActivity : AppCompatActivity() {
         this.etSurname?.addTextChangedListener(textWatcher)
         this.etPhone?.addTextChangedListener(textWatcher)
         this.etAge?.addTextChangedListener(textWatcher)
+
+        bBTN1?.setOnClickListener {
+            textView.text = "Name: ${etName?.text}| Surname: ${etSurname?.text}| Phone: ${etPhone?.text}| Age: ${etAge?.text}"
+            it.hideKeyboard()
+        }
+
     }
 }
 
